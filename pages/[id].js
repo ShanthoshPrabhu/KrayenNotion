@@ -80,10 +80,7 @@ function pagedatas({ page, pageblock, child }) {
       );
     } else if (block.type == "heading_1") {
       return (
-        <div
-          key={block?.id}
-          className="text-2xl font-bold text-center mb-8 md:text-3xl lg:text-4xl"
-        >
+        <div key={block?.id} className="mb-8 text-2xl font-bold">
           {block?.heading_1?.rich_text.map((item) => item?.text?.content)}
         </div>
       );
@@ -361,20 +358,7 @@ function pagedatas({ page, pageblock, child }) {
                 ))
               )}
           </div>
-          <div className="my-4 font-serif cursor-pointer text-xs ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">
-            {properties
-              .filter((property) => property.type === "multi_select")
-              .map((prop) =>
-                prop.multi_select.map((item) => (
-                  <div key={item.id} className="">
-                    <div className="font-serif cursor-pointer text-xs ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">
-                      {" "}
-                      {item?.name}{" "}
-                    </div>
-                  </div>
-                ))
-              )}
-          </div>
+          <div className="flex my-4 font-mono">{multiSelectProperties}</div>
         </div>
         <hr />
         <div className=" xl:w-[800px] items-center justify-center px-10 min-w-[400px]">

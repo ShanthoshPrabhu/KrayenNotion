@@ -29,11 +29,11 @@ const Detailspage = () => {
   return (
     <div>
       <div className=''>
-      <div className="bg-black rounded-lg shadow-md p-6">
+      <div className="p-6 bg-black rounded-lg shadow-md">
                         <div className="p-6 rounded-lg shadow-md ">
-                          <table className="text-center w-full sm:text-xs">
+                          <table className="w-full text-center sm:text-xs">
                             <thead>
-                             <tr className=" font-bold uppercase  text-white" >
+                             <tr className="font-bold text-white uppercase " >
                                <th className="p-2 font-mono font-medium">Name</th>
                                <th className="p-2 font-mono font-medium">Url</th>
                                <th className="p-2 font-mono font-medium">Type</th>
