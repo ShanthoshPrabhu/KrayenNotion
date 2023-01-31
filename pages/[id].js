@@ -310,7 +310,7 @@ function pagedatas({ page, pageblock, child }) {
   // });
   // const title = properties[24].title[0].text.content
 
- const multiSelectProperties = properties
+const multiSelectProperties = properties
             .filter((property) => property?.type === "multi_select")
             ?.map((prop) => {
               return prop?.multi_select?.map((value) => {
@@ -358,19 +358,8 @@ function pagedatas({ page, pageblock, child }) {
                 ))
               )}
           </div>
-          <div className="my-4 font-serif cursor-pointer text-xs ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">
-            {properties
-              .filter((property) => property.type === "multi_select")
-              .map((prop) =>
-                prop.multi_select.map((item) => (
-                  <div key={item.id} className="">
-                    <div className="font-serif cursor-pointer text-xs ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">
-                  
-                      {item?.name}
-                    </div>
-                  </div>
-                ))
-              )}
+          <div className="flex my-4 font-mono">
+           {multiSelectProperties}
           </div>
         </div>
         <hr />
