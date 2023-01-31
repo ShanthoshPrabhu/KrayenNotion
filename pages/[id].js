@@ -80,7 +80,10 @@ function pagedatas({ page, pageblock, child }) {
       );
     } else if (block.type == "heading_1") {
       return (
-        <div key={block?.id} className="text-2xl font-bold text-center mb-8">
+        <div
+          key={block?.id}
+          className="text-2xl font-bold text-center mb-8 md:text-3xl lg:text-4xl"
+        >
           {block?.heading_1?.rich_text.map((item) => item?.text?.content)}
         </div>
       );
@@ -92,7 +95,7 @@ function pagedatas({ page, pageblock, child }) {
         setColorPara(block?.paragraph?.color);
       }, [block]);
       return (
-        <div className="text-base leading-relaxed">
+        <div className="text-base leading-relaxed md:text-lg lg:text-xl">
           {block?.paragraph?.rich_text.map((item) => item?.text?.content)}
         </div>
       );
