@@ -310,7 +310,7 @@ function pagedatas({ page, pageblock, child }) {
   // });
   // const title = properties[24].title[0].text.content
 
-          const multiSelectProperties = properties
+ const multiSelectProperties = properties
             .filter((property) => property?.type === "multi_select")
             ?.map((prop) => {
               return prop?.multi_select?.map((value) => {
@@ -338,9 +338,9 @@ function pagedatas({ page, pageblock, child }) {
         <div className="px-10 border-b-4 border-black">
           <div className="my-4">
             {properties
-              .filter(property => property.type === 'title')
-              .map(prop =>
-                prop.title.map(item => (
+              .filter((property) => property.type === "title")
+              .map((prop) =>
+                prop.title.map((item) => (
                   <div key={item.id} className="font-serif text-4xl font-bold">
                     {item.text.content}
                   </div>
@@ -349,27 +349,34 @@ function pagedatas({ page, pageblock, child }) {
           </div>
           <div className="my-4">
             {properties
-              .filter(property => property.type === 'rich_text')
-              .map(prop =>
-                prop.rich_text.map(item => (
+              .filter((property) => property.type === "rich_text")
+              .map((prop) =>
+                prop.rich_text.map((item) => (
                   <div key={item.id} className="font-serif text-xl font-base">
-                                     {item.text.content}
+                    {item.text.content}
                   </div>
                 ))
               )}
           </div>
-           <div className="my-4 font-serif cursor-pointer text-xs ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">
+          <div className="my-4 font-serif cursor-pointer text-xs ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">
             {properties
-              .filter(property => property.type === 'multi_select')
-              .map(prop =>
-                prop.multi_select.map(item => (
+              .filter((property) => property.type === "multi_select")
+              .map((prop) =>
+                prop.multi_select.map((item) => (
                   <div key={item.id} className="">
-
-                     <div className="font-serif cursor-pointer text-xs ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">  {item?.name} </div>
+                    <div className="font-serif cursor-pointer text-xs ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">
+                  
+                      {item?.name}
+                    </div>
                   </div>
                 ))
               )}
           </div>
+        </div>
+        <hr />
+        <div className=" xl:w-[800px] items-center justify-center px-10 min-w-[400px]">
+          {codeBlocks}
+        </div>
       </div>
     </div>
   );
