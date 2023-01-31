@@ -32,8 +32,6 @@ function pagedatas({ page, pageblock, child }) {
   const items = datasOfPage || [];
   //  console.log("codeBlocks", items);
   const codeBlocks = items.map((block) => {
-    // console.log("bloc",block?.paragraph?.rich_text.map((item) => item));
-
     if (block.type == "callout") {
       return (
         <div
@@ -300,7 +298,7 @@ function pagedatas({ page, pageblock, child }) {
     ?.map((prop) => {
       //  console.log("prop",prop.title[0].text.content)
       return prop?.title.map((item) => {
-        return <div>{item.text.content}</div>;
+        return <div className="">{item.text.content}</div>;
       });
     });
   // const date = new Date(p.last_edited_time).toLocaleString("en-US", {
@@ -334,14 +332,17 @@ function pagedatas({ page, pageblock, child }) {
       <div>
         <Navbar />
       </div>
-      <div className="mt-20 bg-gray-200 rounded-md ">
+      <div className="mt-20 rounded-md ">
         <div className="px-10 border-b-4 border-black">
           <div className="my-4">
             {properties
               .filter((property) => property.type === "title")
               .map((prop) =>
                 prop.title.map((item) => (
-                  <div key={item.id} className="font-serif text-4xl font-bold">
+                  <div
+                    key={item.id}
+                    className="text-4xl font-bold text-left mb-8 md:text-5xl lg:text-6xl"
+                  >
                     {item.text.content}
                   </div>
                 ))
@@ -352,7 +353,10 @@ function pagedatas({ page, pageblock, child }) {
               .filter((property) => property.type === "rich_text")
               .map((prop) =>
                 prop.rich_text.map((item) => (
-                  <div key={item.id} className="font-serif text-xl font-base">
+                  <div
+                    key={item.id}
+                    className="text-base leading-relaxed font-sans mb-8 md:text-lg lg:text-xl"
+                  >
                     {item.text.content}
                   </div>
                 ))
@@ -361,7 +365,7 @@ function pagedatas({ page, pageblock, child }) {
           <div className="flex my-4 font-mono">{multiSelectProperties}</div>
         </div>
         <hr />
-        <div className=" xl:w-[800px] items-center justify-center px-10 min-w-[400px]">
+        <div className="xl:w-800px items-center justify-center px-10 min-w-400px">
           {codeBlocks}
         </div>
       </div>
