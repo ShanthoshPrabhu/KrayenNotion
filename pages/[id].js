@@ -309,17 +309,19 @@ function pagedatas({ page, pageblock, child }) {
           // const title = properties[24].title[0].text.content
 
 
-          const multiSelectProperties = properties
+            const multiSelectProperties = properties
             .filter((property) => property?.type === "multi_select")
-            ?.map((prop) => {
-              return prop?.multi_select?.map((value) => {
+            .map((prop) => 
+               prop?.multi_select?.map((value) => {
                 return (
                   <div className="cursor-pointer text-xs ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">
                     {value?.name}
                   </div>
                 );
-              });
-            });
+              })
+            );
+      
+            
 
 
       const textureProperties = properties
@@ -339,7 +341,7 @@ return (
               .filter(property => property.type === 'title')
               .map(prop =>
                 prop.title.map(item => (
-                  <div key={item.id} className="font-serif text-4xl font-bold">
+                  <div className="font-serif text-4xl font-bold">
                     {item.text.content}
                   </div>
                 ))
@@ -350,23 +352,23 @@ return (
               .filter(property => property.type === 'rich_text')
               .map(prop =>
                 prop.rich_text.map(item => (
-                  <div key={item.id} className="font-serif text-xl font-base">
-                                     {item.text.content}
+                  <div className="font-serif font-thin text-md">
+                       {item.text.content}
                   </div>
                 ))
               )}
           </div>
-           <div className="my-4 font-serif cursor-pointer text-xs ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">
-            {properties
+           <div className="flex w-auto my-4 text-white flex-nowrap">
+            {/* {properties
               .filter(property => property.type === 'multi_select')
               .map(prop =>
                 prop.multi_select.map(item => (
-                  <div key={item.id} className="">
-
-                     <div className="font-serif cursor-pointer text-xs ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">  {item?.name} </div>
+                  <div key={item.id} >
+                     <div className="text-white bg-black">{item.name}</div>
                   </div>
                 ))
-              )}
+              )} */}
+              {multiSelectProperties}
           </div>
       </div>
       <hr/>
