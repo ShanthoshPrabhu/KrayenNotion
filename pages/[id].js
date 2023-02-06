@@ -50,11 +50,17 @@ function pagedatas({ page, pageblock, child }) {
         </div>
       );
     } else if (block.type == "code") {
+      console.log("-->code", block);
       return (
         <pre
-          className={`p-4 my-5 overflow-x-auto text-white bg-gray-600 rounded-md`}
+          className={`p-4 my-5 overflow-x-auto grid text-white bg-gray-600 rounded-md`}
           key={block.id}
         >
+          {block?.code?.language && (
+            <span className="w-fit bg-primary-700 p-1 rounded-lg capitalize">
+              {block?.code?.language}
+            </span>
+          )}
           {block?.code?.rich_text.map((item) => item?.text?.content)}
         </pre>
       );
@@ -290,8 +296,10 @@ function pagedatas({ page, pageblock, child }) {
     //   );
     // }
   });
-
-  const properties = Object.values(page.properties);
+  let properties;
+  {
+    properties = page?.properties && Object.values(page?.properties);
+  }
 
   const titleProperties = properties
     .filter((property) => property.type === "title")
@@ -329,12 +337,12 @@ function pagedatas({ page, pageblock, child }) {
       });
     });
   return (
-    <div className="flex flex-col bg-primary-50">
+    <div className="flex flex-col bg-white">
       <div>
         <Navbar />
       </div>
       <div className="w-full mt-20 p-4 block justify-center items-center">
-        <div className="w-full flex flex-col gap-10 jusitfy-center items-center mx-auto">
+        <div className="w-full flex flex-col gap-6 jusitfy-center items-center mx-auto">
           <div className="my-4">
             {properties
               .filter((property) => property.type === "title")
@@ -380,23 +388,21 @@ function pagedatas({ page, pageblock, child }) {
           <div className="aspect-h-3 aspect-w-4">
             <img
               src={page?.cover?.external?.url}
-              className="rounded-xl w-full md:w-[1000px] xl:w-[1200px] aspect-video"
+              className="rounded-xl w-full md:w-[500px] xl:w-[1000px] aspect-video"
             ></img>
           </div>
         </div>
-        <div className="w-full md:w-[1000px] xl:w-[1200px] mx-auto">
-          {codeBlocks}
-        </div>
+        <div className="w-full max-w-[800px] mx-auto">{codeBlocks}</div>
       </div>
     </div>
   );
 }
 export default pagedatas;
 
-// export const databaseId = "e649f6c751994c0ea85ac6cd6495e7f4";
+export const databaseId = "e649f6c751994c0ea85ac6cd6495e7f4";
 // export const pageId = "4606f5e400c34d68b8a0353328ad0c3c";
 
-export const databaseId = "4c699e3e758d41248751780fefed7d23";
+// export const databaseId = "4c699e3e758d41248751780fefed7d23";
 // export const pageId = "4606f5e400c34d68b8a0353328ad0c3c";
 
 export const getStaticPaths = async () => {

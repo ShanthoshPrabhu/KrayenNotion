@@ -9,7 +9,7 @@ import BlogNav from "../components/BlogNav";
 //export const databaseId = "4c699e3e758d41248751780fefed7d23";
 // export const pageId = "4606f5e400c34d68b8a0353328ad0c3c";
 
-// export const databaseId = 'e649f6c751994c0ea85ac6cd6495e7f4';
+export const databaseId = "e649f6c751994c0ea85ac6cd6495e7f4";
 // //export const pageId='4606f5e400c34d68b8a0353328ad0c3c'
 
 // export const databaseId = "e649f6c751994c0ea85ac6cd6495e7f4";
@@ -52,15 +52,15 @@ function index({ posts, datablock }) {
   console.log("posts", posts);
   // console.log('datablock',datablock)
 
-  useEffect(() => {
-    async function ffff() {
-      const getdata = await axios.post(`/api/database`, {
-        databaseId: "4c699e3e758d41248751780fefed7d23",
-      });
-      console.log("getdata", getdata);
-    }
-    ffff();
-  }, []);
+  // useEffect(() => {
+  //   async function ffff() {
+  //     const getdata = await axios.post(`/api/database`, {
+  //       databaseId: "4c699e3e758d41248751780fefed7d23",
+  //     });
+  //     console.log("getdata", getdata);
+  //   }
+  //   ffff();
+  // }, []);
 
   //Title
   const title = posts.map((post) => {
@@ -309,7 +309,7 @@ function index({ posts, datablock }) {
                     <span className="text-neutral-500">{date}</span>
                   </div>
                   <div className="flex px-3 py-2">
-                    <h1 className="font-serif text-xl font-semibold ">
+                    <h1 className="text-xl font-semibold ">
                       {titleProperties}
                     </h1>
                   </div>
