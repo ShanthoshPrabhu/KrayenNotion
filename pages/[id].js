@@ -319,6 +319,7 @@ function pagedatas({ page, pageblock, child }) {
         );
       });
     });
+  console.log(multiSelectProperties, "--multiselect");
 
   const textureProperties = properties
     .filter((property) => property?.type === "rich_text")
@@ -328,12 +329,12 @@ function pagedatas({ page, pageblock, child }) {
       });
     });
   return (
-    <div className="flex flex-col px-10 sm:px-20 md:px-36 lg:px-64 xl:px-72">
+    <div className="flex flex-col bg-primary-50">
       <div>
         <Navbar />
       </div>
-      <div className="mt-20 rounded-md ">
-        <div className="px-10 border-b-4 border-black">
+      <div className="w-full mt-20 p-4 block justify-center items-center">
+        <div className="w-full flex flex-col gap-10 jusitfy-center items-center mx-auto">
           <div className="my-4">
             {properties
               .filter((property) => property.type === "title")
@@ -341,31 +342,49 @@ function pagedatas({ page, pageblock, child }) {
                 prop.title.map((item) => (
                   <div
                     key={item.id}
-                    className="text-4xl font-bold text-left mb-8 md:text-5xl lg:text-6xl"
+                    className="text-4xl font-bold text-left md:text-5xl lg:text-6xl"
                   >
                     {item.text.content}
                   </div>
                 ))
               )}
           </div>
-          <div className="my-4">
+          <div className="w-2/3">
             {properties
               .filter((property) => property.type === "rich_text")
               .map((prop) =>
                 prop.rich_text.map((item) => (
                   <div
                     key={item.id}
-                    className="text-base leading-relaxed font-sans mb-8 md:text-lg lg:text-xl"
+                    className="text-base leading-relaxed text-center md:text-lg lg:text-xl"
                   >
                     {item.text.content}
                   </div>
                 ))
               )}
           </div>
-          <div className="flex my-4 font-mono">{multiSelectProperties}</div>
+          <div className="flex gap-4">
+            {properties
+              .filter((property) => property?.type === "multi_select")
+              ?.map((prop) => {
+                return prop?.multi_select?.map((value) => {
+                  return (
+                    <div className="cursor-pointer  text-xs ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">
+                      {value?.name}
+                    </div>
+                  );
+                });
+              })}
+          </div>
+
+          <div className="aspect-h-3 aspect-w-4">
+            <img
+              src={page?.cover?.external?.url}
+              className="rounded-xl w-full md:w-[1000px] xl:w-[1200px] aspect-video"
+            ></img>
+          </div>
         </div>
-        <hr />
-        <div className="xl:w-800px items-center justify-center px-10 min-w-400px">
+        <div className="w-full md:w-[1000px] xl:w-[1200px] mx-auto">
           {codeBlocks}
         </div>
       </div>
