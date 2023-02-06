@@ -6,13 +6,13 @@ import React, { Fragment } from "react";
 import { useEffect } from "react";
 import { getBlocks, getDatabase, getPage } from "../library/notion";
 import BlogNav from '../components/BlogNav'
-//export const databaseId = "4c699e3e758d41248751780fefed7d23";
+export const databaseId = "4c699e3e758d41248751780fefed7d23";
 // export const pageId = "4606f5e400c34d68b8a0353328ad0c3c";
 
 // export const databaseId = 'e649f6c751994c0ea85ac6cd6495e7f4';
 // //export const pageId='4606f5e400c34d68b8a0353328ad0c3c'
 
-export const databaseId = "e649f6c751994c0ea85ac6cd6495e7f4";
+// export const databaseId = "e649f6c751994c0ea85ac6cd6495e7f4";
 // export const pageId = "eb889e735554462ca107e68cd7ace229";
 
 export const Text = ({ text }) => {
@@ -271,7 +271,7 @@ const DateProp = posts.map((post) => {
           });
 
           const properties = Object.values(post?.properties);
-                    const titleProperties = properties
+          const titleProperties = properties
          .filter((property) => property?.type === "title")
          ?.map((property) => {
            return property?.title?.map((value) => {
@@ -283,7 +283,7 @@ const DateProp = posts.map((post) => {
             ?.map((prop) => {
               return prop?.multi_select?.map((value) => {
                 return (
-                  <div className="cursor-pointer text-xs ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">
+                  <div className="cursor-pointer text-sm ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">
                     {value?.name}
                   </div>
                 );
@@ -306,7 +306,7 @@ const DateProp = posts.map((post) => {
                     <span className="text-neutral-500">{date}</span>
                   </div>
                  <div className="flex px-3 py-2">
-                  <h1 className="font-serif text-xl font-semibold ">
+                  <h1 className=" text-xl font-semibold ">
                       {titleProperties}
                     </h1>
                  </div>

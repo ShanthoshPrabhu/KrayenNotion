@@ -370,10 +370,10 @@ function pagedatas({ page, pageblock, child }) {
 }
 export default pagedatas;
 
-export const databaseId = "e649f6c751994c0ea85ac6cd6495e7f4";
+// export const databaseId = "e649f6c751994c0ea85ac6cd6495e7f4";
 // export const pageId = "4606f5e400c34d68b8a0353328ad0c3c";
 
-//export const databaseId = "4c699e3e758d41248751780fefed7d23";
+export const databaseId = "4c699e3e758d41248751780fefed7d23";
 // export const pageId = "4606f5e400c34d68b8a0353328ad0c3c";
 
 export const getStaticPaths = async () => {
