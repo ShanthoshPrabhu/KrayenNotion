@@ -12,7 +12,7 @@ import BlogNav from "../components/BlogNav";
 // export const databaseId = 'e649f6c751994c0ea85ac6cd6495e7f4';
 // //export const pageId='4606f5e400c34d68b8a0353328ad0c3c'
 
-export const databaseId = "e649f6c751994c0ea85ac6cd6495e7f4";
+// export const databaseId = "e649f6c751994c0ea85ac6cd6495e7f4";
 // export const pageId = "eb889e735554462ca107e68cd7ace229";
 
 export const Text = ({ text }) => {
@@ -284,7 +284,7 @@ function index({ posts, datablock }) {
             ?.map((prop) => {
               return prop?.multi_select?.map((value) => {
                 return (
-                  <div className="cursor-pointer text-xs ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">
+                  <div className="cursor-pointer text-sm ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">
                     {value?.name}
                   </div>
                 );
