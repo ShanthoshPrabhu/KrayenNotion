@@ -52,16 +52,16 @@ export const Text = ({ text }) => {
 function index({ posts ,datablock}) {
    console.log("posts", posts);
   // console.log('datablock',datablock)
- 
-  async function ffff(){
-    const getdata = await axios.post(`/api/database`, {
-      databaseId:'4c699e3e758d41248751780fefed7d23'
-      })
-      console.log('getdata',getdata)
-  }
-  useEffect(()=>{
-    ffff()
-  },[])
+  
+  // async function ffff(){
+  //   const getdata = await axios.post(`/api/database`, {
+  //     databaseId:'4c699e3e758d41248751780fefed7d23'
+  //     })
+  //     console.log('getdata',getdata)
+  // }
+  // useEffect(()=>{
+  //   ffff()
+  // },[])
 
   //Title
   const title = posts.map((post) => {
@@ -255,7 +255,7 @@ const DateProp = posts.map((post) => {
   });
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen max-w-screen-2xl sm:m-8">
+    <div className="flex flex-col items-center justify-center max-w-screen-2xl sm:m-8">
       <div className="z-50"><BlogNav/></div>
       <h2 className="mb-[70px] text-3xl">All Posts</h2>
       <div className="grid grid-flow-row-dense mx-auto xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 ">
@@ -264,6 +264,9 @@ const DateProp = posts.map((post) => {
           //   "postingggggggggg",
           //   post?.properties?.Name?.title[0]?.text?.content
           // );
+          const colorArray = ['#fee2e2', '#fce7f3', '#dbeafe', '#ede9fe', '#d1fae5', '#fef3c7', '#ffedd5', '#fef3c7', '#f5f5f5', '#d1fae5'];
+          const shuffledArray = colorArray.sort(() => Math.random() - 0.5);
+                //  console.log('shuffledArray',shuffledArray)
           const date = new Date(post.last_edited_time).toLocaleString("en-US", {
             month: "short",
             day: "2-digit",
@@ -281,9 +284,11 @@ const DateProp = posts.map((post) => {
           const multiSelectProperties = properties
             .filter((property) => property?.type === "multi_select")
             ?.map((prop) => {
-              return prop?.multi_select?.map((value) => {
+              return prop?.multi_select?.map((value,index) => {
+                
                 return (
-                  <div className="cursor-pointer text-sm ml-4 px-2 py-[1px] flex justify-around shadow-md bg-[#89cff0] rounded-sm">
+                  <div className="cursor-pointer text-sm ml-4 px-2 py-[1px] flex justify-around shadow-md rounded-sm"
+                  style={{ backgroundColor: shuffledArray[index % shuffledArray.length] }} key={index}>
                     {value?.name}
                   </div>
                 );

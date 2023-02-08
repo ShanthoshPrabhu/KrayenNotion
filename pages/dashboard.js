@@ -55,19 +55,30 @@ export default function MyModal() {
       const Id = path?.split("-")[1];
       console.log("pageid", Id);
       console.log(Id?.length == 32);
+   async function checkPageData(){
+    const data = await axios.post(`/api/notion`,{
+      pageId:Id
+    })
+    if(data){
+      router.push('/')
+    }
+   }
+   checkPageData()
     }
     if (path?.split("?")) {
       const Id = path.split("?")[0];
       console.log(Id);
-
       async function checkData() {
         const getdata = await axios.post(`/api/notion`, {
           databaseId: Id,
         });
         console.log("getdata", getdata);
+        if(getdata){
+          router.push('/')
+        }
       }
       checkData();
-
+      
       // window.location.replace(`/pages/table/${pageId}`)
     }
   }
@@ -86,7 +97,7 @@ export default function MyModal() {
     },
   ];
   return (
-    <div>
+    <div className="">
       <div>
         <Navbar />
       </div>
@@ -267,11 +278,11 @@ export default function MyModal() {
       </Transition>
       </div>
          <div className="mt-1 ">
-      <Detailspage/>
+           <Detailspage/>
          </div>
       </div> 
       
-      <div className="mt-2">
+      <div className="  ">
             <Footer2  />
       </div>     
     </div>
