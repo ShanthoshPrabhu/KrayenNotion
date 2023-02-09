@@ -6,7 +6,8 @@ import DetailsRendering from "../components/DetailsRendering";
 import Footer2 from "../components/Footer2";
 import Navbar from "../components/Navbar";
 import { getDatabase } from "../library/notion";
-import Detailspage from '../components/Detailspage'
+import Detailspage from '../components/Detailspage';
+import notionauth from "./notionauth";
 
 
 export default function MyModal() {
@@ -71,6 +72,11 @@ export default function MyModal() {
       // window.location.replace(`/pages/table/${pageId}`)
     }
   }
+  
+  const handleNotionNavi = () =>{
+   
+  }
+
   const solutions = [
     {
       name: "Blog",
@@ -215,8 +221,8 @@ export default function MyModal() {
                         your notion page. Ignore if you have done it already.
                       </span>
                       <div className="mt-4">
-                        <button className="p-2 text-white bg-black rounded-md ">
-                          Go to my notion page
+                        <button className="p-2 text-white bg-black rounded-md">
+                          <a href='https://api.notion.com/v1/oauth/authorize?client_id=d548655f-7faa-40a9-9503-9954997a4a7c&response_type=code&owner=user&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fnotion%2Fcallback'>Go to my notion page</a>
                         </button>
                       </div>
                     </div>
