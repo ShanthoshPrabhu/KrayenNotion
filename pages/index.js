@@ -51,18 +51,6 @@ export const Text = ({ text }) => {
 function index({ posts, datablock }) {
   console.log("posts", posts);
   // console.log('datablock',datablock)
-<<<<<<< HEAD
-  
-  // async function ffff(){
-  //   const getdata = await axios.post(`/api/database`, {
-  //     databaseId:'4c699e3e758d41248751780fefed7d23'
-  //     })
-  //     console.log('getdata',getdata)
-  // }
-  // useEffect(()=>{
-  //   ffff()
-  // },[])
-=======
 
   // useEffect(() => {
   //   async function ffff() {
@@ -73,7 +61,6 @@ function index({ posts, datablock }) {
   //   }
   //   ffff();
   // }, []);
->>>>>>> adca55417aebe9b2f1e91a0a2698e7e521981cd6
 
   //Title
   const title = posts.map((post) => {
@@ -267,15 +254,10 @@ function index({ posts, datablock }) {
   });
 
   return (
-<<<<<<< HEAD
-    <div className="flex flex-col items-center justify-center max-w-screen-2xl sm:m-8">
-      <div className="z-50"><BlogNav/></div>
-=======
     <div className="flex flex-col items-center justify-center min-h-screen max-w-screen-2xl sm:m-8">
       <div className="z-50">
         <BlogNav />
       </div>
->>>>>>> adca55417aebe9b2f1e91a0a2698e7e521981cd6
       <h2 className="mb-[70px] text-3xl">All Posts</h2>
       <div className="grid grid-flow-row-dense mx-auto xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 ">
         {posts.map((post) => {
