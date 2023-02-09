@@ -219,7 +219,8 @@ export default function MyModal() {
                       <span className=" flex font-medium lg:ml-[40px] mt-4 lg:text-lg">
                         Do share your Notion page to public
                       </span>
-                      <img
+                      <img 
+                      //
                         alt=""
                         src="https://notaku.so/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnotion_page_copy_url.0c316447.png&w=750&q=75"
                         className=" min-h-[160px] sm:w-[420px] lg:w-[500px] xl:ml-[50px] lg:h-[280px]"
