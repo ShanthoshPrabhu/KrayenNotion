@@ -6,15 +6,13 @@ import {addDoc,collection,doc} from "@firebase/firestore";
 function callback({response}) {
   const router =useRouter();
 
-  // async function addUserDetails(){
-  //   await addDoc(collection(db,'notionuserandtoken'),{
-  //     username:response?.owner?.user?.name,
-  //     uid:response?.owner?.user?.id,
-  //     email:response?.owner?.user?.person?.email,
-  //     access_token:response?.access_token,
-  //     profileURL:response?.owner?.user?.avatar_url
-  //   })
-  // }
+  // await addDoc(collection(db,'users'),{
+  //   username:response?.owner?.user?.name,
+  //   uid:response?.owner?.user?.id,
+  //   email:response?.owner?.user?.person?.email,
+  //   access_token:response?.access_token,
+  //   profileURL:response?.owner?.user?.avatar_url
+  // })
     console.log('response',response)
   //   if(response){
 
@@ -49,11 +47,22 @@ export async function getServerSideProps(resolvedUrl){
       console.log('res',res)
 
       const response = await res.json()
+      
+      // Add the data to Firebase
+    await addDoc(collection(db, 'users'), {
+      username: response?.owner?.user?.name,
+      uid: response?.owner?.user?.id,
+      email: response?.owner?.user?.person?.email,
+      access_token: response?.access_token,
+      profileURL: response?.owner?.user?.avatar_url
+    })
+
+    // Redirect the user to the dashboard page
+      resolvedUrl.res.writeHead(302, { Location: '/dashboard' });
+      resolvedUrl.res.end();
 
       return {
-        props:{
-            response
-        }
+        props:{ }
       }
     }catch (err){
         console.log(err)

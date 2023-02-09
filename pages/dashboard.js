@@ -60,7 +60,7 @@ export default function MyModal() {
       pageId:Id
     })
     if(data){
-      router.push('/')
+      router.push(`/${Id}`)
     }
    }
    checkPageData()
@@ -74,7 +74,7 @@ export default function MyModal() {
         });
         console.log("getdata", getdata);
         if(getdata){
-          router.push('/')
+          router.push(`/database/${Id}`)
         }
       }
       checkData();
@@ -226,9 +226,7 @@ export default function MyModal() {
                         your notion page. Ignore if you have done it already.
                       </span>
                       <div className="mt-4">
-                        <button className="p-2 text-white bg-black rounded-md ">
-                          Go to my notion page
-                        </button>
+                      <a href='https://api.notion.com/v1/oauth/authorize?client_id=d548655f-7faa-40a9-9503-9954997a4a7c&response_type=code&owner=user&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fnotion%2Fcallback' className=" font-semibold base">Go to notion page</a>
                       </div>
                     </div>
                     <div className="flex flex-col mt-10">

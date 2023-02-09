@@ -4,9 +4,9 @@ import axios from "axios";
 import Link from "next/link";
 import React, { Fragment } from "react";
 import { useEffect } from "react";
-import { getBlocks, getDatabase, getPage } from "../library/notion";
-import BlogNav from '../components/BlogNav'
-export const databaseId = "4c699e3e758d41248751780fefed7d23";
+import { getBlocks, getDatabase } from "../../library/notion";
+import BlogNav from '../../components/BlogNav'
+// export const databaseId = "4c699e3e758d41248751780fefed7d23";
 // export const pageId = "4606f5e400c34d68b8a0353328ad0c3c";
 
 // export const databaseId = 'e649f6c751994c0ea85ac6cd6495e7f4';
@@ -49,7 +49,7 @@ export const Text = ({ text }) => {
   });
 };
 
-function index({ posts ,datablock}) {
+function Databasepage({ posts ,datablock}) {
    console.log("posts", posts);
   // console.log('datablock',datablock)
   
@@ -340,16 +340,12 @@ const DateProp = posts.map((post) => {
   );
 }
 
-export default index;
+export default Databasepage;
 
-export const getStaticProps = async () => {
+export const getStaticProps = async (context) => {
+    const databaseId = context.params.id;
   const database = await getDatabase(databaseId);
   const datablock =await getBlocks(databaseId);
-  
-  
-
-
-  // console.log("dataaaaaa", database);
 
   return {
     props: {

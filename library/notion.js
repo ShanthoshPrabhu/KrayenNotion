@@ -2,8 +2,8 @@ import { Client } from "@notionhq/client";
 
 const notion = new Client({
   //auth: "secret_MnsWLzCz8ReGab2uZoawvLuV3QjQz89DcxIbcMaSPyb"
-  // auth: "secret_Jk4OZPnpBoqyzOgxCrAT8hoKCgEEQCqyuZTxJKKTriE"
-  auth: "secret_nWmuyWgqdR3hrNsjFwxIv3wj7H4x9gXxkTNYvtrc15I",
+  auth: "secret_Jk4OZPnpBoqyzOgxCrAT8hoKCgEEQCqyuZTxJKKTriE"
+  // auth: "secret_nWmuyWgqdR3hrNsjFwxIv3wj7H4x9gXxkTNYvtrc15I",
 });
 
 export const getDatabase = async (databaseId) => {
