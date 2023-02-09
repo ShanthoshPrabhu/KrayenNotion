@@ -6,13 +6,15 @@ import {addDoc,collection,doc} from "@firebase/firestore";
 function callback({response}) {
   const router =useRouter();
 
-  // await addDoc(collection(db,'users'),{
-  //   username:response?.owner?.user?.name,
-  //   uid:response?.owner?.user?.id,
-  //   email:response?.owner?.user?.person?.email,
-  //   access_token:response?.access_token,
-  //   profileURL:response?.owner?.user?.avatar_url
-  // })
+  async function addUserDetails(){
+    await addDoc(collection(db,'notionuserandtoken'),{
+      // username:response?.owner?.user?.name,
+      // uid:response?.owner?.user?.id,
+      // email:response?.owner?.user?.person?.email,
+      access_token:response?.access_token,
+      // profileURL:response?.owner?.user?.avatar_url
+    })
+  }
     console.log('response',response)
   //   if(response){
 

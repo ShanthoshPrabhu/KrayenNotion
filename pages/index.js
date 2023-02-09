@@ -265,8 +265,10 @@ const DateProp = posts.map((post) => {
   });
 
   return (
-    <div className="flex flex-col items-center justify-center max-w-screen-2xl sm:m-8">
-      <div className="z-50"><BlogNav/></div>
+    <div className="flex flex-col items-center justify-center min-h-screen max-w-screen-2xl sm:m-8">
+      <div className="z-50">
+        <BlogNav />
+      </div>
       <h2 className="mb-[70px] text-3xl">All Posts</h2>
       <div className="grid grid-flow-row-dense mx-auto xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 ">
         {posts.map((post) => {

@@ -6,7 +6,8 @@ import DetailsRendering from "../components/DetailsRendering";
 import Footer2 from "../components/Footer2";
 import Navbar from "../components/Navbar";
 import { getDatabase } from "../library/notion";
-import Detailspage from '../components/Detailspage'
+import Detailspage from '../components/Detailspage';
+import notionauth from "./notionauth";
 
 
 export default function MyModal() {
@@ -82,6 +83,11 @@ export default function MyModal() {
       // window.location.replace(`/pages/table/${pageId}`)
     }
   }
+  
+  const handleNotionNavi = () =>{
+   
+  }
+
   const solutions = [
     {
       name: "Blog",
@@ -213,7 +219,8 @@ export default function MyModal() {
                       <span className=" flex font-medium lg:ml-[40px] mt-4 lg:text-lg">
                         Do share your Notion page to public
                       </span>
-                      <img
+                      <img 
+                      //
                         alt=""
                         src="https://notaku.so/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnotion_page_copy_url.0c316447.png&w=750&q=75"
                         className=" min-h-[160px] sm:w-[420px] lg:w-[500px] xl:ml-[50px] lg:h-[280px]"
@@ -226,7 +233,9 @@ export default function MyModal() {
                         your notion page. Ignore if you have done it already.
                       </span>
                       <div className="mt-4">
-                      <a href='https://api.notion.com/v1/oauth/authorize?client_id=d548655f-7faa-40a9-9503-9954997a4a7c&response_type=code&owner=user&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fnotion%2Fcallback' className=" font-semibold base">Go to notion page</a>
+                        <button className="p-2 text-white bg-black rounded-md ">
+                          Go to my notion page
+                        </button>
                       </div>
                     </div>
                     <div className="flex flex-col mt-10">
