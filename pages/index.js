@@ -5,11 +5,11 @@ import Link from "next/link";
 import React, { Fragment } from "react";
 import { useEffect } from "react";
 import { getBlocks, getDatabase, getPage } from "../library/notion";
-import BlogNav from '../components/BlogNav'
-export const databaseId = "4c699e3e758d41248751780fefed7d23";
+import BlogNav from "../components/BlogNav";
+//export const databaseId = "4c699e3e758d41248751780fefed7d23";
 // export const pageId = "4606f5e400c34d68b8a0353328ad0c3c";
 
-// export const databaseId = 'e649f6c751994c0ea85ac6cd6495e7f4';
+export const databaseId = "e649f6c751994c0ea85ac6cd6495e7f4";
 // //export const pageId='4606f5e400c34d68b8a0353328ad0c3c'
 
 // export const databaseId = "e649f6c751994c0ea85ac6cd6495e7f4";
@@ -20,7 +20,6 @@ export const Text = ({ text }) => {
     return null;
   }
   return text.map((value) => {
-
     // console.log("value", value);
 
     const {
@@ -49,9 +48,10 @@ export const Text = ({ text }) => {
   });
 };
 
-function index({ posts ,datablock}) {
-   console.log("posts", posts);
+function index({ posts, datablock }) {
+  console.log("posts", posts);
   // console.log('datablock',datablock)
+<<<<<<< HEAD
   
   // async function ffff(){
   //   const getdata = await axios.post(`/api/database`, {
@@ -62,6 +62,18 @@ function index({ posts ,datablock}) {
   // useEffect(()=>{
   //   ffff()
   // },[])
+=======
+
+  // useEffect(() => {
+  //   async function ffff() {
+  //     const getdata = await axios.post(`/api/database`, {
+  //       databaseId: "4c699e3e758d41248751780fefed7d23",
+  //     });
+  //     console.log("getdata", getdata);
+  //   }
+  //   ffff();
+  // }, []);
+>>>>>>> adca55417aebe9b2f1e91a0a2698e7e521981cd6
 
   //Title
   const title = posts.map((post) => {
@@ -91,13 +103,13 @@ function index({ posts ,datablock}) {
           </div>
         );
       });
-      console.log('selectProperties',selectProperties)
+    console.log("selectProperties", selectProperties);
     return <div>{selectProperties}</div>;
   });
 
   const Texture = posts.map((post) => {
     const properties = Object.values(post.properties);
-    console.log('properties',properties)
+    console.log("properties", properties);
     const textureProperties = properties
       .filter((property) => property?.type === "rich_text")
       .map((prop) => {
@@ -178,7 +190,7 @@ function index({ posts ,datablock}) {
     return <div>{StatusProperties}</div>;
   });
 
-const DateProp = posts.map((post) => {
+  const DateProp = posts.map((post) => {
     const properties = Object.values(post.properties);
     const DateProperties = properties
       .filter((property) => property.type === "date")
@@ -255,8 +267,15 @@ const DateProp = posts.map((post) => {
   });
 
   return (
+<<<<<<< HEAD
     <div className="flex flex-col items-center justify-center max-w-screen-2xl sm:m-8">
       <div className="z-50"><BlogNav/></div>
+=======
+    <div className="flex flex-col items-center justify-center min-h-screen max-w-screen-2xl sm:m-8">
+      <div className="z-50">
+        <BlogNav />
+      </div>
+>>>>>>> adca55417aebe9b2f1e91a0a2698e7e521981cd6
       <h2 className="mb-[70px] text-3xl">All Posts</h2>
       <div className="grid grid-flow-row-dense mx-auto xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 ">
         {posts.map((post) => {
@@ -275,12 +294,12 @@ const DateProp = posts.map((post) => {
 
           const properties = Object.values(post?.properties);
           const titleProperties = properties
-         .filter((property) => property?.type === "title")
-         ?.map((property) => {
-           return property?.title?.map((value) => {
-           return (<div>{value?.text?.content}</div>) 
-          });
-      });
+            .filter((property) => property?.type === "title")
+            ?.map((property) => {
+              return property?.title?.map((value) => {
+                return <div>{value?.text?.content}</div>;
+              });
+            });
           const multiSelectProperties = properties
             .filter((property) => property?.type === "multi_select")
             ?.map((prop) => {
@@ -307,14 +326,16 @@ const DateProp = posts.map((post) => {
 
                 <div className="px-2 py-2">
                   <div className="flex items-center justify-between py-2 text-xs">
-                    <div className="flex font-mono ">{multiSelectProperties}</div>
+                    <div className="flex font-mono ">
+                      {multiSelectProperties}
+                    </div>
                     <span className="text-neutral-500">{date}</span>
                   </div>
-                 <div className="flex px-3 py-2">
-                  <h1 className=" text-xl font-semibold ">
+                  <div className="flex px-3 py-2">
+                    <h1 className="text-xl font-semibold ">
                       {titleProperties}
                     </h1>
-                 </div>
+                  </div>
                   <div className="p-3 text-lg line-clamp-3">
                     <Text text={post?.properties?.Text?.rich_text} />
                   </div>
@@ -334,18 +355,14 @@ export default index;
 
 export const getStaticProps = async () => {
   const database = await getDatabase(databaseId);
-  const datablock =await getBlocks(databaseId);
-  
-  
-
+  const datablock = await getBlocks(databaseId);
 
   // console.log("dataaaaaa", database);
 
   return {
     props: {
       posts: database,
-      datablock:datablock,
-
+      datablock: datablock,
     },
     revalidate: 1,
   };
