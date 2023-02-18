@@ -12,7 +12,6 @@ import { db } from "../firebase";
 import { useEffect } from "react";
 import { getSession, useSession } from "next-auth/react";
 import Footer from "../components/Footer";
-import { async } from "@firebase/util";
 import Blogs from "../components/Blogs";
 import Loader from "../components/Loader";
 import Pages from "../components/Pages";
@@ -211,18 +210,16 @@ useEffect(()=>{
       <div>
         <Navbar/>
       </div>
-      <div className=" flex justify-end mt-10 mr-14">  
+      <div className=" flex justify-end mr-7 mt-10 md:mr-14">  
         <button
           onClick={openModal}
-          className="px-4 py-2 text-sm cursor-pointer font-medium text-white bg-black rounded-md  focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          className="md:px-4 md:py-2 px-2 py-[6px] text-sm cursor-pointer font-medium text-white bg-black rounded-md  focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
           Create New site
         </button> 
       </div>
       <div className=" min-h-40 ">
-         {blogs?.map((blog,index)=>(
-          <div className=" " key={index}>
-             <div className=' p-3 '>
+         <div className=' p-3 '>
             <div className=' text-base flex justify-center font-semibold'>Blogs</div>
             <div className=' flex text-xs space-x-6 md:text-sm mt-3 lg:text-base justify-around'>
           <div className=' space-y-4'>
@@ -232,15 +229,17 @@ useEffect(()=>{
             <div className=' font-semibold'>link</div>
           </div>
           </div>
-         </div>
-           <Blogs data={blog.data()}/>
+             </div>
+         {blogs?.map((blog,index)=>(
+          <div key={index} className='my-3'>
+            <Blogs data={blog.data()}/>
           </div>
          ))}
 
       </div>
       <div className=" min-h-40 ">
-         {pages?.map((page,index)=>(
-          <div className=" " key={index}>
+        
+          <div className=" " >
              <div className=' p-3 '>
             <div className=' text-base flex justify-center font-semibold'>pages</div>
             <div className=' flex text-xs space-x-6 md:text-sm mt-3 lg:text-base justify-around'>
@@ -252,7 +251,11 @@ useEffect(()=>{
           </div>
           </div>
          </div>
-           <Pages data={page.data()}/>
+           
+          </div>
+         {pages?.map((page,index)=>(
+          <div className="  my-3" key={index}>
+            <Pages data={page.data()}/>
           </div>
          ))}
 
@@ -261,13 +264,6 @@ useEffect(()=>{
       <div className="w-4/5 mx-auto 2xl:w-5/6 xl:w-4/6">
           
       <div className="flex items-center justify-center">
-        {/* <button
-          type="button"
-          onClick={openModal}
-          className="px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          Create a site
-        </button> */}
          <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
