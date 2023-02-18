@@ -30,9 +30,9 @@ export function Googlemapsembed({place}) {
     const placeId = place[4];
     // <iframe class="notion-asset-object-fit" src="https://www.google.com/maps/embed/v1/place?center=10.8158368%2C78.6189874&amp;key=AIzaSyD9HrlRuI1Ani0-MTZ7pvzxwxi4pgW0BCY&amp;zoom=12&amp;q=Tiruchirappalli,+Tamil+Nadu" title="iframe embed" frameborder="0" allowfullscreen="" loading="lazy"></iframe>
   return (
-    <div>
+    <div className=' w-3/4'>
         <iframe
-      width="600"
+      width="full"
       height="450"
       frameBorder="0"
       src={`https://www.google.com/maps/embed/v1/place?q=place_id:${placeId}&key=AIzaSyBxVwnFlRH_9eyNjxEQx2mA4e-2wDthAN0`}

@@ -81,6 +81,10 @@ useEffect(()=>{
   router.push('/settings');
   }
 
+  function openSettings (){
+  router.push('/settings');
+  }
+   
   function closeModal() {
     setIsOpen(false);
   }
@@ -502,4 +506,3 @@ function IconTwo() {
     </svg>
   );
 }
-
