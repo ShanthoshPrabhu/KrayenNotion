@@ -9,10 +9,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-<<<<<<< HEAD
-=======
-  font-family: "Kanit", serif;
->>>>>>> bd814a749a05d7438a5b629a3618642a8b13187a
 }
 
 a {
@@ -33,7 +29,6 @@ a {
     background: black;
   }
 }
-<<<<<<< HEAD
 .loading {
   display: flex;
   align-items: center;
@@ -58,9 +53,6 @@ a {
     transform: rotate(360deg);
   }
 }
-=======
-
->>>>>>> bd814a749a05d7438a5b629a3618642a8b13187a
 .root {
   --fg-color: #37352f;
   --fg-color-0: rgba(55, 53, 47, 0.09);

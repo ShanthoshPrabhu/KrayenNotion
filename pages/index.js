@@ -36,11 +36,12 @@ async function getUser(){
   //   return
   // }
 }
-  useEffect(()=>{
-  if(session && user.length === 0){
-    getUser()
-  }
-  },[])
+if(session && user.length === 0){
+  getUser()
+}
+  // useEffect(()=>{
+  
+  // },[])
   if(!session){
     return <Login providers={providers}/>
   }
