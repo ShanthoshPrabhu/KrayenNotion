@@ -12,7 +12,7 @@ import { useSession } from 'next-auth/react';
 import { db } from '../../../firebase';
 // import { getServerSession } from 'next-auth';
 
-function callback({response}) {
+function Callback({response}) {
   // const session = useSession();
   const {data:session} = useSession();
   const router =useRouter();
@@ -100,7 +100,7 @@ function callback({response}) {
     )
 }
 
-export default callback
+export default Callback
 
 
 
