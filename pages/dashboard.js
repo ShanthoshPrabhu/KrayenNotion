@@ -2,15 +2,11 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import DetailsRendering from "../components/DetailsRendering";
 import Navbar from "../components/Navbar";
-import { getDatabase } from "../library/notion";
-import Detailspage from '../components/Detailspage';
-import notionauth from "./notionauth";
 import { collection, getDocs, query, where , doc, setDoc, serverTimestamp, onSnapshot, getDoc, addDoc, orderBy } from "firebase/firestore";
 import { db } from "../firebase";
 import { useEffect } from "react";
-import { getSession, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Footer from "../components/Footer";
 import Blogs from "../components/Blogs";
 import Loader from "../components/Loader";
@@ -180,17 +176,12 @@ useEffect(()=>{
        }
         console.log('sucessssssdb')
       }
-      // checkData();
-      
-      // window.location.replace(`/pages/table/${pageId}`)
+     
     }
   }
  
   
-  // useEffect(()=>{
-  // getUsers()
-  // },[])
-
+  
   const solutions = [
     {
       name: "Blog",
@@ -357,18 +348,6 @@ useEffect(()=>{
                         className=" min-h-[160px] sm:w-[420px] lg:w-[500px] xl:ml-[50px] lg:h-[280px]"
                       />
                     </div>
-                    {/* <div className="mt-10">
-                      <span className="flex font-bold lg:text-xl">Step 2</span>
-                      <span className="flex font-medium lg:ml-[40px] mt-4 lg:text-lg max-w-[600px]">
-                        Click the button below in order to select and authorize
-                        your notion page. Ignore if you have done it already.
-                      </span>
-                      <div className="mt-4">
-                        <button className="p-2 text-white bg-black rounded-md ">
-                        <a href='https://api.notion.com/v1/oauth/authorize?client_id=d548655f-7faa-40a9-9503-9954997a4a7c&response_type=code&owner=user&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fnotion%2Fcallback'>Go to notion page</a>
-                        </button>
-                      </div>
-                    </div> */}
                     <div className={`mt-10 ${user.access_token ? 'opacity-30': null}`}>
                       <span className="flex font-bold lg:text-xl">Step 2</span>
                       <span className="flex font-medium lg:ml-[40px] mt-4 lg:text-lg max-w-[600px]">
