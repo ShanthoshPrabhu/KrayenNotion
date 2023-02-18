@@ -4,6 +4,7 @@ import {getAuth} from 'firebase/auth';
 import { getFirestore } from "firebase/firestore";
 
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyDtJMOIURYRl8I3J7Irg35OKL2N4LUJAbQ",
   authDomain: "krayennotion.firebaseapp.com",

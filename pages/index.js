@@ -1,125 +1,62 @@
-// import { getDatabase } from "@notionhq/client/build/src/api-endpoints";
-import axios from "axios";
-import Link from "next/link";
-import React, { Fragment } from "react";
-import { getBlocks, getDatabase, getPage } from "../library/notion";
+import { doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore';
+import { getProviders, useSession } from 'next-auth/react'
+import React from 'react'
+import { useEffect } from 'react';
+import { useState } from 'react';
+import Login from '../components/Login';
+import { db } from '../firebase';
 
-export const databaseId = "4c699e3e758d41248751780fefed7d23";
-export const pageId = "4606f5e400c34d68b8a0353328ad0c3c";
-
-// export const databaseId = 'e649f6c751994c0ea85ac6cd6495e7f4';
-// //export const pageId='4606f5e400c34d68b8a0353328ad0c3c'
-
-// export const databaseId = "e649f6c751994c0ea85ac6cd6495e7f4";
-// export const pageId = "eb889e735554462ca107e68cd7ace229";
-
-export const Text = ({ text }) => {
-  if (!text) {
-    return null;
+function Home({providers}) {
+  const {data:session} = useSession();
+   const [user,setUser]=useState([])
+  // console.log('ses',session)
+  async function createUser(){
+    await setDoc(doc(db, 'users',session.user.email),{
+      username:session.user.name,
+      email:session.user.email,
+      profile:session.user.image
+    });
+    return getUser()
+   
   }
-  return text.map((value) => {
+console.log('user',user)
+async function getUser(){
+  const docRef = doc(db, "users", session?.user?.email);
+  const docSnap = await getDoc(docRef);
+  console.log('data', docSnap.data())
+  if (docSnap.exists()) {
+    console.log("Document data:", docSnap.data());
+    return setUser(docSnap.data())
+  } else {
+    return createUser()
+  }
 
-    console.log("value", value);
-
-    const {
-      annotations: { bold, code, color, italic, strikethrough, underline },text
-    } = value;
-    console.log('text',text)
-    return (
-      <span
-        className={[
-          bold ? "font-bold" : "",
-          code ? " bg-[#F2F2F2] px-2 py-4 rounded-lg" : "",
-          italic ? " italic" : "",
-          strikethrough ? " line-through" : "",
-          underline ? "underline" : "",
-        ].join(" line-clamp-3")}
-        style={color !== "default" ? { color } : {}}
-      >
-        {text.link == null ? text.content : <a href={text.link.url}>{text.content}</a> }
-      </span>
-    );
-  });
-};
-
-function index({ posts }) {
-  console.log("posts", posts);
-
+  // else {
+  //   createUser()
+  //   return
+  // }
+}
+  useEffect(()=>{
+  if(session && user.length === 0){
+    getUser()
+  }
+  },[])
+  if(!session){
+    return <Login providers={providers}/>
+  }
   return (
-
-    <div
-      className="flex flex-col items-center justify-center min-h-screen max-w-screen-2xl"
-    >
-      <h2 className="mb-[70px]">All Posts</h2>
-      {posts.map((post) => {
-        const date = new Date(post.last_edited_time).toLocaleString("en-US", {
-          month: "short",
-          day: "2-digit",
-          year: "numeric",
-        });
-        return (
-          <li
-
-            key={post.id}
-            className="flex flex-col max-w-[750px] rounded-lg bg-white shadow-lg mb-20 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:drop-shadow-2xl duration-300 cursor-pointer p-5"
-          >
-            <Link className="" href={`/${post.id}`}>
-              <div className="flex max-h-[210px]">           
-                <div className="bg-gray-600 md:w-[280px] rounded-md">
-                  <img
-                    src={post?.cover?.external?.url}
-                    alt=""
-                    className="min-w-[280px] min-h-[210px] max-w-[280px] max-h-[210px] object-cover rounded-2xl"
-                  />
-                </div>
-
-                <div className="ml-3 md:max-w-[300px]">
-                  <h3 className="pl-2 text-xl ">
-                    <Text text={post?.properties?.Name?.title} key={post?.properties?.Name?.id}/>
-                  </h3>
-                  <div className="  flex-grow h-[90px] p-3 ">
-                    <Text text={post.properties.Text.rich_text} />
-                  </div>
-                  <div className="flex items-center  w-[60px]">
-                    {Object.values(post.properties).map((property) => {
-                      if (property?.type == "multi_select") {
-                        const multidata = property?.multi_select?.map(
-                          (values) => {
-                            // console.log("values", values);
-                            return (
-                              <div className="cursor-pointer m-2 pl-2 pr-2 pb-1 w-full shadow-lg bg-[#89cff0] rounded-sm" key={values?.id}>
-                                {values?.name}
-                              </div>
-                            );
-                          }
-                        );
-                        return <div className="flex">{multidata}</div>;
-                      }
-                    })}
-                  </div>
-                  <p className="p-3 ">{date}</p>
-                </div>
-              </div>
-            </Link>
-          </li>
-        );
-      })}
-    </div>
-  );
+    <div>Home</div>
+  )
 }
 
-export default index;
+export default Home
 
-export const getStaticProps = async () => {
-  const database = await getDatabase(databaseId);
-  //const database =await getBlocks(pageId);
-
-  // console.log("dataaaaaa", database);
-
+export async function getServerSideProps(context) {
+  const providers = await getProviders()
+  console.log('providers',providers)
   return {
     props: {
-      posts: database,
+      providers:providers
     },
-    revalidate: 1,
-  };
-};
+  }
+}

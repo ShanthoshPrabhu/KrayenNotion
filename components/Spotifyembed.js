@@ -9,7 +9,7 @@ export const Spotifyembed = ({ trackUrl }) => {
   }, [trackUrl]);
   
   return (
-    <div className=' flex items-center justify-center m-6'>
+    <div className=' flex items-center justify-center  m-6'>
         <iframe
       src={`https://open.spotify.com/embed/track/${trackId}`}
       width="600"

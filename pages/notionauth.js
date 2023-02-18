@@ -1,6 +1,14 @@
+import { getProviders, useSession } from 'next-auth/react'
 import React from 'react'
+import Login from '../components/Login';
 
-function notionauth() {
+function notionauth({providers}) {
+  const {data:session} =useSession();
+  console.log('prov',providers)
+  console.log('ses',session)
+  // if(!session){
+  //   return <Login providers={providers}/>
+  // }
   return (
     <div className=' flex items-center justify-center w-screen h-screen'>
         <div className='p-2 bg-gray-400 rounded-md text-white'>
@@ -11,3 +19,12 @@ function notionauth() {
 }
 
 export default notionauth
+
+export async function getServerSideProps(context) {
+  const providers = await getProviders()
+  return {
+    props: {
+      providers:providers
+    },
+  }
+}

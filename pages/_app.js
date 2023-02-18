@@ -1,20 +1,18 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
 
-import 'react-notion-x/src/styles.css'
-import Head from 'next/head'
+import "react-notion-x/src/styles.css";
+import Head from "next/head";
+import { SessionProvider } from "next-auth/react";
 
-
-
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps:{session,...pageProps} }) {
   return (
     <>
-     <Head>
-        <script src="https://www.youtube.com/iframe_api"></script>
-      </Head>
-    <Component {...pageProps} />
+      
+     <SessionProvider>
+     <Component {...pageProps} />
+     </SessionProvider>
     </>
-  )
-  
+  );
 }
 
-export default MyApp
+export default MyApp;
