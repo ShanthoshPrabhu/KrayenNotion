@@ -7,7 +7,9 @@ import { db } from "../../firebase";
 import {Spotifyembed} from '../../components/Spotifyembed'
 import {Googlemapsembed} from '../../components/Googlemapsembed'
 import {Tweetembed} from '../../components/Tweetembed'
-function pagedatas() {
+
+
+function Pagedatas() {
  
   const router = useRouter();
   const {id} = router.query;
@@ -93,13 +95,12 @@ console.log('child',child)
         </div>
       );
     } else if (block.type == "code") {
-      console.log("-->code", block);
       return (
-        <div className=' bg-[#F1F1EF] p-2'>
+        <div className=' bg-[#F1F1EF] p-2'
+        key={block?.id}>
           <span className=' flex justify-end text-[#19171199] text-sm'>{block?.code?.language}</span>
           <pre
           className={`p-2 overflow-x-auto grid  rounded-md`}
-          key={block.id}
         >
           {block?.code?.rich_text.map((item) => item?.text?.content)}
         </pre>
@@ -132,7 +133,7 @@ console.log('child',child)
     } else if (block.type == "paragraph") {
      
       return (
-        <div className="text-base leading-relaxed md:text-lg lg:text-xl">
+        <div className="text-base leading-relaxed md:text-lg lg:text-xl" key={block?.id}>
           {block?.paragraph?.rich_text.map((item) => item?.text?.content)}
         </div>
       );
@@ -226,15 +227,15 @@ console.log('child',child)
       );
     } else if (block.type == "numbered_list_item") {
       return (
-        <li className="my-5 list-decimal text-md">
+        <li className="my-5 list-decimal text-md" key={block?.id}>
           {block.numbered_list_item.rich_text.map(
-            (item) => item?.text?.content
+            (item,index) => <div key={}>{ item?.text?.content}</div> 
           )}
         </li>
       );
     } else if (block.type == "video") {
       return (
-        <div className="my-5 text-sm md:text-base lg:text-lg ">
+        <div className="my-5 text-sm md:text-base lg:text-lg " key={block?.id}>
          
           <a href={`${block.video.external.url}`}>{block.video.external.url}</a>
         </div>
@@ -308,5 +309,5 @@ console.log('child',child)
     </div>
   );
 }
-export default pagedatas;
+export default Pagedatas;
 
